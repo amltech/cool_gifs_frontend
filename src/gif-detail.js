@@ -1,30 +1,27 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 
-class GIFDetail extends Component {
-    constructor(props) {
-	super(props);
-	this.state = {
-	    gif: {}
+function GIFDetail(props) {
+    const [data, setData] = useState({gif: {} });
+
+    useEffect(() => {
+	const fetchData = async () => {
+	  const { pk } = props.match.params;
+	  const result = await axios(
+	    `http://localhost:8000/api/images/${pk}/`,
+	  );
+	  setData(result.data);
 	};
-    }
-
-    componentDidMount() {
-	const { pk } = this.props.match.params;
-	fetch(`http://localhost:8000/api/images/${pk}/`)
-	    .then(response => response.json())
-	    .then(data => this.setState({ gif: data }));
-    }
+	fetchData();
+    }, []);
     
-    render() {
-	const { gif } = this.state;
-	return (
-		<div>
-		<h2>{gif.title}</h2>
-		<img src={gif.src} />
-		<p>{gif.description}</p>
-		
-		</div>
-	);
-    }
+    return (
+	<div>
+	  <h2>{data.title}</h2>
+	  <img src={data.src} alt={data.title} />
+	  <p>{data.description}</p>	
+	</div>
+    )
 }
+
 export default GIFDetail
