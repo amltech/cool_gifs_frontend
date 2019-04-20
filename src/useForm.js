@@ -23,8 +23,14 @@ const useForm = (callback, validate) => {
 	setValues(values => ({ ...values, [event.target.name]: event.target.value}));
     };
 
+    const setSingleValue = (key, value) => {
+	setValues(values => ({ ...values, [key]: value}));
+	console.log(values);
+    };
+
     return {
 	handleChange,
+	setSingleValue,
 	handleSubmit,
 	values,
 	errors,
