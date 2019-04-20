@@ -4,7 +4,7 @@ import {
 } from "react-router-dom";
 import axios from 'axios';
 
-function GifList() {
+const GifList = () => {
     const [data, setData] = useState([]);
     useEffect(() => {
 	const fetchData = async () => {
@@ -16,7 +16,7 @@ function GifList() {
     }, []);
 
     return (
-		<div>
+		<div className="box">
 		<ul>
 		{data.map(gif =>
 			  <li key={gif.id}>

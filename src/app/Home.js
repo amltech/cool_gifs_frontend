@@ -1,8 +1,8 @@
 import React from "react";
 
-function Home() {
+const Home = () => {
   return (
-    <div>
+    <div class="box">
       <h2>Cool GIFs</h2>
       <p>This is where you upload gifs</p>
     </div>
