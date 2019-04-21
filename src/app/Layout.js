@@ -9,14 +9,13 @@ import Router from './layout/Router';
 
 const Layout = () => (
   <Site>
-    <Helmet
-      title="Cool GIFs"
-    />
+    <Helmet title="Cool GIFs" />
     <Header />
     <Content>
       <Router />
     </Content>
     <Footer />
   </Site>
-)
+);
+
 export default Layout;
