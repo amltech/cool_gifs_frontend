@@ -70,13 +70,11 @@ const UploadForm = (props) => {
               File is too large.
             </p>
           )}
-          <ul className="list-group">
-            {acceptedFiles.length > 0 && acceptedFiles.map(acceptedFile => (
-              <li className="list-group-ite list-group-item-success" key={acceptedFile.name}>
-                {acceptedFile.name}
-              </li>
-            ))}
-          </ul>
+         {acceptedFiles.length > 0 && acceptedFiles.map(acceptedFile => (
+            <p className="help is-success" key={acceptedFile.name}>
+              {acceptedFile.name}
+            </p>
+          ))}
         </div>
       </div>
       <div className="field">
