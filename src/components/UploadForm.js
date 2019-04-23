@@ -1,10 +1,9 @@
 import React, { useCallback, useState } from 'react';
-import axios from 'axios';
 import { useDropzone } from 'react-dropzone';
 import { withRouter } from 'react-router';
 import useForm from './useForm';
 import validate from './uploadFormValidationRules';
-
+import api from './apiAccess';
 
 const UploadForm = (props) => {
   const maxSize = 10485759;
@@ -42,7 +41,7 @@ const UploadForm = (props) => {
     formData.append('src', values.image);
     formData.append('title', values.title);
     formData.append('description', values.description);
-    axios.post('http://localhost:8000/api/images/', formData,
+    api.post('images/', formData,
     {
       headers: {
         'Content-Type': 'multipart/form-data'

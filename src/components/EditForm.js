@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { withRouter } from 'react-router';
 import useForm from './../components/useForm';
 import validate from './../components/uploadFormValidationRules';
-
+import api from './apiAccess';
 
 const UploadForm = (props) => {
   const { pk } = props.match.params;
   const [ data, setData ] = useState({ gif: {} });
   const [ serverErrors, setServerErrors ] = useState({ title: [], description: []})
-  let apiUrl = `${process.env.REACT_APP_API_BASE_URL}images/${pk}/`;
+  const apiUrl = `images/${pk}/`;
   const {
     handleChange,
     setSingleValue,
@@ -20,7 +19,7 @@ const UploadForm = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios(apiUrl);
+      const result = await api.get(apiUrl);
       setData(result.data);
       setSingleValue('title', result.data.title);
       setSingleValue('description', result.data.description);
@@ -31,7 +30,7 @@ const UploadForm = (props) => {
   }, []);
  
   function publishData() {
-    axios.patch(apiUrl, values)
+    api.patch(apiUrl, values)
     .then(response => {
       const image = response.data;
       props.history.push(`/gifs/${image.id}`);

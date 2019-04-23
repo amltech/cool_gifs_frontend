@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import api from './../components/apiAccess';
 
 function GIFDetail(props) {
   const [data, setData] = useState({gif: {} });
   const [error, setError] = useState(false);
   const { pk } = props.match.params;
   const fetchData = async () => {
-    const result = await axios(`${process.env.REACT_APP_API_BASE_URL}images/${pk}/`);
+    const result = await api.get(`images/${pk}/`);
     setData(result.data);
   };
 
@@ -24,6 +24,10 @@ function GIFDetail(props) {
         Unable to access API!
       </div>
     )}
+    {!error && !data.src && (
+      <progress className="progress is-primary" max="100"></progress>
+    )}
+    {!error && data.src && (
       <div className="box">
         <div className="card">
           <div className="card-header">
@@ -45,6 +49,7 @@ function GIFDetail(props) {
           </footer>
         </div>
       </div>
+    )}
     </div>
   );
 };
