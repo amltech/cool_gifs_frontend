@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { withRouter } from 'react-router';
+import { Redirect } from 'react-router-dom';
 import useForm from './../components/useForm';
 import validate from './../components/uploadFormValidationRules';
 import api from './apiAccess';
 
-const UploadForm = (props) => {
-  const { pk } = props.match.params;
+const UploadForm = ({pk}) => {
+  const [ submitted, setSubmitted ] = useState(false);
   const [ data, setData ] = useState({ gif: {} });
   const [ serverErrors, setServerErrors ] = useState({ title: [], description: []})
   const apiUrl = `images/${pk}/`;
@@ -24,7 +24,6 @@ const UploadForm = (props) => {
       setSingleValue('title', result.data.title);
       setSingleValue('description', result.data.description);
       setSingleValue('id', result.data.id);
-      //handleChange(result.data);
     };
     fetchData();
   }, []);
@@ -32,12 +31,16 @@ const UploadForm = (props) => {
   function publishData() {
     api.patch(apiUrl, values)
     .then(response => {
-      const image = response.data;
-      props.history.push(`/gifs/${image.id}`);
+      setSubmitted(true);
     })
     .catch(function(error) {
       setServerErrors(error.response.data);
     });
+  }
+  if ( submitted ) {
+    return (
+      <Redirect to={`/gifs/${pk}`} />
+    );
   }
 
   return (
@@ -77,4 +80,4 @@ const UploadForm = (props) => {
   );
 };
  
-export default withRouter(UploadForm);
+export default UploadForm;

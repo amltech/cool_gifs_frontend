@@ -1,10 +1,10 @@
 import React from 'react';
 import EditForm from './../components/EditForm';
 
-const Edit = () => {
+const Edit = (props) => {
   return (
     <div className="box">
-      <EditForm />
+      <EditForm pk={props.match.params.pk} />
     </div>
   );
 };

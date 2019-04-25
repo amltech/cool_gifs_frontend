@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import api from './../components/apiAccess';
 
-function GIFDetail(props) {
+const GIFDetail = ({pk}) => {
+  console.log('gifId', pk)
   const [data, setData] = useState({gif: {} });
   const [error, setError] = useState(false);
-  const { pk } = props.match.params;
   const fetchData = async () => {
     const result = await api.get(`images/${pk}/`);
     setData(result.data);
@@ -13,6 +13,7 @@ function GIFDetail(props) {
 
   useEffect(() => {
     fetchData().catch((error) => {
+      console.log('error', error);
       setError(true);
     });
    }, []);
@@ -20,8 +21,10 @@ function GIFDetail(props) {
   return (
     <div>
     {error && (
-      <div className="notification is-danger">
-        Unable to access API!
+      <div>
+        <div className="notification is-danger">
+          Unable to access API!
+        </div>
       </div>
     )}
     {!error && !data.src && (
