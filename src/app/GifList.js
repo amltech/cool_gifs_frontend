@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {
-    Link
-} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFlag } from '@fortawesome/free-regular-svg-icons';
 import api from './../components/apiAccess';
 
 const GifList = () => {
@@ -30,7 +30,12 @@ const GifList = () => {
           GIFs
         </p>
         {data.map(gif =>
-          <Link to={`/gifs/${gif.id}`} className="panel-block" key={gif.id}>{gif.title}</Link>
+          <Link to={`/gifs/${gif.id}`} className="panel-block" key={gif.id}>
+            {gif.flagged && (
+              <FontAwesomeIcon icon={faFlag} />
+            )}
+            {gif.title}
+          </Link>
         )}
         </nav>
       </div>

@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import api from './../components/apiAccess';
+import ConfirmModal from './../components/ConfirmModal';
 
 const GIFDetail = ({pk}) => {
-  console.log('gifId', pk)
   const [data, setData] = useState({gif: {} });
   const [error, setError] = useState(false);
+  const apiUrl = `images/${pk}/`;
   const fetchData = async () => {
-    const result = await api.get(`images/${pk}/`);
+    const result = await api.get(apiUrl);
+    setData(result.data);
+  };
+  const flagImage = () => {
+    const result = api.patch(apiUrl, {flagged: true});
     setData(result.data);
   };
 
   useEffect(() => {
     fetchData().catch((error) => {
-      console.log('error', error);
       setError(true);
     });
    }, []);
@@ -48,7 +52,10 @@ const GIFDetail = ({pk}) => {
           </div>
           <footer className="card-footer">
             <Link to={`/gifs/${pk}/edit`} className="card-footer-item">Edit</Link>
-            <Link to={`/gifs/${pk}/flag`} className="card-footer-item">Flag</Link>
+            <ConfirmModal buttonText="Flag" confirmText="Flag" className="card-footer-item" 
+                          onConfirm={flagImage}>
+              Flagging an image indicates it needs to be reviewed.
+            </ConfirmModal>
           </footer>
         </div>
       </div>
