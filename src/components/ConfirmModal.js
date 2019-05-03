@@ -34,7 +34,8 @@ const ConfirmModal = (props) => {
             {props.children}
           </section>
           <footer className="modal-card-foot">
-            <button className="button is-primary" onClick={onConfirm}>{props.confirmText}</button>
+            <button className={`button ${props.confirmClass ? props.confirmClass : 'is-primary'}`} 
+                    onClick={onConfirm}>{props.confirmText}</button>
             <button className="button" onClick={closeModal}>Cancel</button>
           </footer>
         </div>
