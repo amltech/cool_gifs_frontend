@@ -52,8 +52,8 @@ const GIFDetail = ({pk}) => {
           </div>
           <footer className="card-footer">
             <Link to={`/gifs/${pk}/edit`} className="card-footer-item">Edit</Link>
-            <ConfirmModal buttonText="Flag" confirmText="Flag" className="card-footer-item" 
-                          onConfirm={flagImage}>
+            <ConfirmModal buttonText="Flag" confirmText="Flag" className="card-footer-item is-danger" 
+                          onConfirm={flagImage} confirmClass="is-danger">
               Flagging an image indicates it needs to be reviewed.
             </ConfirmModal>
           </footer>

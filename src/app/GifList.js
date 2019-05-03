@@ -32,7 +32,9 @@ const GifList = () => {
         {data.map(gif =>
           <Link to={`/gifs/${gif.id}`} className="panel-block" key={gif.id}>
             {gif.flagged && (
-              <FontAwesomeIcon icon={faFlag} />
+              <span class="panel-icon">
+                <FontAwesomeIcon icon={faFlag} />
+              </span>
             )}
             {gif.title}
           </Link>
