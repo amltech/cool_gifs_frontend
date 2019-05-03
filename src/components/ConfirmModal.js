@@ -7,6 +7,9 @@ const ConfirmModal = (props) => {
 
   const openModal = (e) => {
     e.preventDefault();
+    if (props.disabled) {
+      return;
+    }
     setOpen(true);
   };
 
@@ -22,7 +25,9 @@ const ConfirmModal = (props) => {
 
   return (
     <>
-      <a href="#" className={props.className} onClick={openModal}>{props.buttonText}</a>
+      <a href="#" className={props.className} onClick={openModal} disabled={props.disabled}>
+        {props.buttonText}
+      </a>
       <div className={`modal ${open ? 'is-active' : ''}`}>
         <div className="modal-background"></div>
         <div className="modal-card">
