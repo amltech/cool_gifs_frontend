@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from 'react';
-
-
+import React, { useState } from 'react';
 
 const ConfirmModal = (props) => {
   const [ open, setOpen ] = useState(false);
 
   const openModal = (e) => {
     e.preventDefault();
-    if (props.disabled) {
-      return;
-    }
     setOpen(true);
   };
 
@@ -25,9 +20,9 @@ const ConfirmModal = (props) => {
 
   return (
     <>
-      <a href="#" className={props.className} onClick={openModal} disabled={props.disabled}>
+      <button  className={props.className} onClick={openModal} disabled={props.disabled}>
         {props.buttonText}
-      </a>
+      </button>
       <div className={`modal ${open ? 'is-active' : ''}`}>
         <div className="modal-background"></div>
         <div className="modal-card">
