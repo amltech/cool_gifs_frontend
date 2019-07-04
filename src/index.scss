@@ -15,4 +15,31 @@ code {
     monospace;
 }
 
+.card a.card-footer-item[disabled] {
+  background-color: white;
+  border-color: #dbdbdb;
+  box-shadow: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
+.card a.card-footer-item[disabled]:hover {
+  color: #3273dc;
+}
+
+.card button.card-footer-item {
+  text-decoration: none;
+  background-color: inherit;
+  border: 0;
+  line-height: 24px;
+  font-size: 16px;
+}
+
+.card button.card-footer-item:not(:disabled) {
+  color: #3273dc;
+  cursor: pointer;
+}
+
+.card button.card-footer-item[disabled] {
+  cursor: not-allowed;
+}

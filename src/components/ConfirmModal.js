@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-
-
+import React, { useState } from 'react';
 
 const ConfirmModal = (props) => {
   const [ open, setOpen ] = useState(false);
@@ -22,7 +20,9 @@ const ConfirmModal = (props) => {
 
   return (
     <>
-      <a href="#" className={props.className} onClick={openModal}>{props.buttonText}</a>
+      <button  className={props.className} onClick={openModal} disabled={props.disabled}>
+        {props.buttonText}
+      </button>
       <div className={`modal ${open ? 'is-active' : ''}`}>
         <div className="modal-background"></div>
         <div className="modal-card">
@@ -34,7 +34,8 @@ const ConfirmModal = (props) => {
             {props.children}
           </section>
           <footer className="modal-card-foot">
-            <button className="button is-primary" onClick={onConfirm}>{props.confirmText}</button>
+            <button className={`button ${props.confirmClass ? props.confirmClass : 'is-primary'}`} 
+                    onClick={onConfirm}>{props.confirmText}</button>
             <button className="button" onClick={closeModal}>Cancel</button>
           </footer>
         </div>
