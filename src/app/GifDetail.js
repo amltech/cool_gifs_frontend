@@ -11,8 +11,8 @@ const GIFDetail = ({pk}) => {
     const result = await api.get(apiUrl);
     setData(result.data);
   };
-  const flagImage = () => {
-    const result = api.patch(apiUrl, {flagged: true});
+  const flagImage = async () => {
+    const result = await api.patch(apiUrl, {flagged: true});
     setData(result.data);
   };
 
