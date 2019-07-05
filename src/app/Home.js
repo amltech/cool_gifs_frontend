@@ -1,10 +1,10 @@
 import React from "react";
+import Markdown from './../components/Markdown';
 
 const Home = () => {
   return (
     <div className="box">
-      <h2>Cool GIFs</h2>
-      <p>This is where you upload gifs</p>
+      <Markdown src="/home.md"/>
     </div>
   );
 }
