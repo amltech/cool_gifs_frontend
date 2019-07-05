@@ -5,7 +5,7 @@ const Header = () => {
     const [active, setActive] = useState(false);
     
     return (
-  <nav className="navbar" role="navigation" aria-label="main navigation">
+  <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
     <div className="navbar-brand">
       <NavLink to="/" className="navbar-item">Cool GIfs</NavLink>
       <a role="button" className="navbar-burger burger" onClick={() => setActive(!active)} aria-label="menu" aria-expanded="false" data-target="main-navbar">
