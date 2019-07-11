@@ -31,10 +31,10 @@ const GIFDetail = ({pk}) => {
         </div>
       </div>
     )}
-    {!error && !data.src && (
+    {!error && !data.permalink && (
       <progress className="progress is-primary" max="100"></progress>
     )}
-    {!error && data.src && (
+    {!error && data.permalink && (
       <>
          <div className="box">
            {data.flagged && (
@@ -54,7 +54,7 @@ const GIFDetail = ({pk}) => {
             </div>
             <div className="card-image">
               <figure className={`image ${data.height === data.width ? 'is-1x1': 'is-16x9'}`}>
-                <img src={data.src} alt={data.title} />
+                <img src={data.permalink} alt={data.title} />
               </figure>
             </div>
             <footer className="card-footer">
@@ -63,6 +63,7 @@ const GIFDetail = ({pk}) => {
                             onConfirm={flagImage} confirmClass="is-danger" disabled={data.flagged}>
                 Flagging an image indicates it needs to be reviewed.
               </ConfirmModal>
+              <a href={data.permalink} className="card-footer-item">Permalink</a>
             </footer>
           </div>
         </div>
