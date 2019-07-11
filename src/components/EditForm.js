@@ -46,7 +46,7 @@ const UploadForm = ({pk}) => {
   return (
     <form onSubmit={handleSubmit}>
       <figure className={`image ${data.height === data.width ? 'is-1x1': 'is-16x9'}`}>
-        <img src={data.src} alt={data.title} />
+        <img src={data.permalink} alt={data.title} />
       </figure>
       <div className="field">
         <label className="label">Title</label>
