@@ -7,7 +7,9 @@ import api from './apiAccess';
 
 const UploadForm = (props) => {
   const maxSize = 10485759;
-  const [ serverErrors, setServerErrors ] = useState({title: [], description: []});  
+  const [ serverErrors, setServerErrors ] = useState(
+    {title: [], description: []});
+  const [ fileError, setFileError ] = useState(false);
   const {
     handleChange,
     setSingleValue,
@@ -38,6 +40,10 @@ const UploadForm = (props) => {
     
   function process() {
     let formData = new FormData();
+    if (!values.image) {
+	    setFileError(true);
+	    return;
+    }
     formData.append('src', values.image);
     formData.append('title', values.title);
     formData.append('description', values.description);
@@ -60,7 +66,7 @@ const UploadForm = (props) => {
       <div {...getRootProps()} className="field">
         <label className="label">Image</label>
         <div className="control">
-          <input {...getInputProps()} required/>
+          <input {...getInputProps()} />
           {!isDragActive && 'Click here to drop a file to upload' }
           {isDragActive && !isDragReject && 'Drop it'}
           {isDragReject && 'File type not supported'}
@@ -69,7 +75,12 @@ const UploadForm = (props) => {
               File is too large.
             </p>
           )}
-         {acceptedFiles.length > 0 && acceptedFiles.map(acceptedFile => (
+          {fileError && !acceptedFiles.length && (
+            <p className="help is-danger">
+	            Files are required.
+            </p>
+	        )}
+          {acceptedFiles.length > 0 && acceptedFiles.map(acceptedFile => (
             <p className="help is-success" key={acceptedFile.name}>
               {acceptedFile.name}
             </p>
