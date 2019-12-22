@@ -59,7 +59,7 @@ const UploadForm = (props) => {
     <form onSubmit={handleSubmit}>
       <div {...getRootProps()} className="field">
         <label className="label">Image</label>
-        <div className="control">
+        <div className="control dropzone">
           <input {...getInputProps()} required/>
           {!isDragActive && 'Click here to drop a file to upload' }
           {isDragActive && !isDragReject && 'Drop it'}
