@@ -77,9 +77,9 @@ const UploadForm = (props) => {
           )}
           {fileError && !acceptedFiles.length && (
             <p className="help is-danger">
-	            Files are required.
+	            A file is required.
             </p>
-	        )}
+	      )}
           {acceptedFiles.length > 0 && acceptedFiles.map(acceptedFile => (
             <p className="help is-success" key={acceptedFile.name}>
               {acceptedFile.name}
