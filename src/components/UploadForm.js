@@ -69,7 +69,7 @@ const UploadForm = (props) => {
               File is too large.
             </p>
           )}
-         {acceptedFiles.length > 0 && acceptedFiles.map(acceptedFile => (
+          {acceptedFiles.length > 0 && acceptedFiles.map(acceptedFile => (
             <p className="help is-success" key={acceptedFile.name}>
               {acceptedFile.name}
             </p>
