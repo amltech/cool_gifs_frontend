@@ -65,7 +65,7 @@ const UploadForm = (props) => {
     <form onSubmit={handleSubmit}>
       <div {...getRootProps()} className="field">
         <label className="label">Image</label>
-        <div className="control">
+        <div className="control dropzone">
           <input {...getInputProps()} />
           {!isDragActive && 'Click here to drop a file to upload' }
           {isDragActive && !isDragReject && 'Drop it'}
@@ -79,7 +79,7 @@ const UploadForm = (props) => {
             <p className="help is-danger">
 	            A file is required.
             </p>
-	      )}
+	        )}
           {acceptedFiles.length > 0 && acceptedFiles.map(acceptedFile => (
             <p className="help is-success" key={acceptedFile.name}>
               {acceptedFile.name}

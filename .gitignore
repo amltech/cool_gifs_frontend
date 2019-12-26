@@ -26,3 +26,4 @@ src/**/*.css
 /.env*
 /public/config.js
 config.js
+.idea
