@@ -42,29 +42,30 @@ const GIFDetail = ({pk}) => {
               This image has been flagged for review.
             </div>
           )}
-
-          <div className="card">
-            <div className="card-header">
-              <p className="card-header-title">{ data.title }</p>
-            </div>
-            <div className="card-content">
-              <div className="content">
-                {data.description}
+          <div class="columns is-centered">
+            <div className="card">
+              <div className="card-header">
+                <p className="card-header-title">{ data.title }</p>
               </div>
+              <div className="card-image">
+                <figure className={`image ${data.height === data.width ? 'is-1x1': 'is-16x9'}`}>
+                  <img src={data.permalink} alt={data.title} />
+                </figure>
+              </div>
+              <div className="card-content">
+                <div className="content">
+                  {data.description}
+                </div>
+              </div>
+              <footer className="card-footer">
+                <Link to={`/gifs/${pk}/edit`} className="card-footer-item">Edit</Link>
+                <ConfirmModal buttonText="Flag" confirmText="Flag" className="card-footer-item is-danger" 
+                              onConfirm={flagImage} confirmClass="is-danger" disabled={data.flagged}>
+                  Flagging an image indicates it needs to be reviewed.
+                </ConfirmModal>
+                <a href={data.permalink} className="card-footer-item">Permalink</a>
+              </footer>
             </div>
-            <div className="card-image">
-              <figure className={`image ${data.height === data.width ? 'is-1x1': 'is-16x9'}`}>
-                <img src={data.permalink} alt={data.title} />
-              </figure>
-            </div>
-            <footer className="card-footer">
-              <Link to={`/gifs/${pk}/edit`} className="card-footer-item">Edit</Link>
-              <ConfirmModal buttonText="Flag" confirmText="Flag" className="card-footer-item is-danger" 
-                            onConfirm={flagImage} confirmClass="is-danger" disabled={data.flagged}>
-                Flagging an image indicates it needs to be reviewed.
-              </ConfirmModal>
-              <a href={data.permalink} className="card-footer-item">Permalink</a>
-            </footer>
           </div>
         </div>
       </>

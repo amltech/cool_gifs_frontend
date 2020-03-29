@@ -4,7 +4,9 @@ import UploadForm from './../components/UploadForm';
 
 const Upload = () => (
   <div className="box">
-    <UploadForm />
+    <div class="columns is-centered">
+      <UploadForm />
+    </div>
   </div>
 );
 
