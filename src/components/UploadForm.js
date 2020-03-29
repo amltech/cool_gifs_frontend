@@ -62,7 +62,7 @@ const UploadForm = (props) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} class="gif-form">
       <div {...getRootProps()} className="field">
         <label className="label">Image</label>
         <div className="control dropzone">

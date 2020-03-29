@@ -4,7 +4,9 @@ import EditForm from './../components/EditForm';
 const Edit = (props) => {
   return (
     <div className="box">
-      <EditForm pk={props.match.params.pk} />
+      <div class="columns is-centered">
+        <EditForm pk={props.match.params.pk} />
+      </div>
     </div>
   );
 };
